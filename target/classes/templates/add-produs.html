@@ -1,0 +1,15 @@
+<form action="#" th:action="@{/addprodus}" th:object="${produs}" method="post">
+    <label for="nume">Nume</label>
+    <input type="text" th:field="*{nume}" id="nume" placeholder="Nume">
+    <span th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}"></span>
+    <label for="pret">Pret</label>
+    <input type="text" th:field="*{pret}" id="pret" placeholder="Pret">
+    <span th:if="${#fields.hasErrors('pret')}" th:errors="*{pret}"></span>
+    <label for="producator">Producator</label>
+    <input type="text" th:field="*{producator}" id="producator" placeholder="Producator">
+    <span th:if="${#fields.hasErrors('producator')}" th:errors="*{producator}"></span>
+    <label for="cantitate">Cantitate</label>
+    <input type="text" th:field="*{cantitate}" id="cantitate" placeholder="Cantitate">
+    <span th:if="${#fields.hasErrors('cantitate')}" th:errors="*{cantitate}"></span>
+    <input type="submit" value="Adauga un nou Produs">
+</form>

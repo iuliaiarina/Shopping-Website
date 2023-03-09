@@ -1,0 +1,36 @@
+<div th:switch="${produse}">
+    <h2 th:case="null">No produse yet!</h2>
+    <div th:case="*">
+        <h2>Produs</h2>
+        <table name=bordertable cellspacing=2 width="100%" cellpadding=0 border=1>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Pret</th>
+                <th>Producator</th>
+                <th>Cantitate</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${produse.empty}">
+                <td colspan="5"> No Produse Available </td>
+            </tr>
+            <tr th:each="produs : ${produse}">
+                <td th:text="${produs.nume}"></td>
+                <td th:text="${produs.pret}"></td>
+                <td th:text="${produs.producator}"></td>
+                <td th:text="${produs.cantitate}"></td>
+                <td><a th:href="@{/edit/{id}(id=${produs.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${produs.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <p><a href="/signup">Adauga a new produs</a></p>
+
+    <h5 class="text-right"><a href="/welcome">HOME</a></h5>
+</div>

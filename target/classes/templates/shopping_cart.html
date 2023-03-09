@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="utf-8">
+  <title>Create an account</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div sec:authorize="isAuthenticated()">
+    <!-- codul mai jos: buton logout-->
+    <form id="logoutForm" method="POST" th:action="@{/logout}">
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+
+    <!-- codul mai jos: buton cos cumparturi
+    <form id="cosForm" method="POST" th:action="@{/shopping_cart}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>-->
+
+    <!-- codul mai jos: Hrello you-->
+
+    <!-- codul mai jos: Hrello you-->
+    <h4>Welcome <span sec:authentication="name"></span> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h4>
+
+    <table name=bordertable cellspacing=2 width="100%" cellpadding=0 border=1>
+      <thead>
+      <tr>
+        <th> Nume </th>
+        <th> Pret </th>
+        <th> Producator </th>
+        <th> Stoc </th>
+        <th> Cantitate </th>
+        <th> Add </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${items.empty}">
+        <td colspan="5"> No Produse Available </td>
+      </tr>
+      <tr th:each="item : ${items}">
+        <td><span th:text="${item.nume}"> Nume </span></td>
+       <td><span th:text="${item.pret}"> Pret </span></td>
+         <td><span th:text="${item.producator}"> Producator </span></td>
+        <td><span th:text="${item.stoc}"> Stoc </span></td>
+       <td><span th:text="${item.cantitate}"> Cantitate </span></td>
+        <td>
+          <a th:href="@{/deleteCos/{id}(id=${item.id})}">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+    <h5 class="text-right"><a href="/cumpara">Cumpara</a></h5>
+    <h5 class="text-right"><a href="/welcome">HOME</a></h5>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
